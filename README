@@ -1,0 +1,3 @@
+h1. how to run tests
+rake test
+
