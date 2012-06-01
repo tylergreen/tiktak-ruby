@@ -1,0 +1,2 @@
+require 'game'
+require 'human'
