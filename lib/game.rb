@@ -40,15 +40,13 @@ class Game
   
   def start
     print_welcome_message
-    player = @player1
-    [:x, :o].cycle.take(@size).each do |mark|
+    [[:x, @player1], [:o, @player2]].cycle.take(@size).each do |mark, player|
       board.print
       board.place(mark, get_move(player))
       if board.winner?
         puts "Player #{mark} wins!"
         break
       end
-      player = switch(player)
     end
     board.print
     puts "Tie game!" unless board.winner?

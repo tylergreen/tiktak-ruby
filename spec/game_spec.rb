@@ -13,11 +13,6 @@ describe Game do
 
   describe "Game Functionality" do
 
-    it "can switch back and forth between two players" do
-      assert_equal(@player_x, @game.switch(@player_y))
-      assert_equal(@player_y, @game.switch(@player_x))
-    end
-
     it "knows its size" do
       assert_equal(9, Game.new(3, nil, nil).size)
       assert_equal(16, Game.new(4, nil, nil).size)
