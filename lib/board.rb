@@ -1,15 +1,34 @@
-class ProtoBoard
-  
+class Board
   attr_reader :size, :length
-  def initalize(length, layout=nil)
+  def initialize(length, layout=nil)
     @length = length
     @size = length ** 2
+    @board = [:empty].cycle(@size).to_a
     if layout
       layout.each_with_index do |mark, i|
-        @board.place(mark,i)
+        place(mark,i)
       end
     end
   end
+
+  def to_a
+    @board
+  end
+  
+  def rows
+    @board.each_slice(3).to_a
+  end
+
+  def columns
+    @board.each_with_index.
+      group_by {|x,i| i % @length }.
+      values.
+      flatten(1).
+      map{ |x,i| x }.
+      each_slice(3).
+      to_a
+  end
+
 
   def available?(position)
     @board[position] == :empty 
@@ -47,51 +66,7 @@ class ProtoBoard
   end
 
   def print
-    format.each{ |row| puts row.inspect }
-  end
-end
-
-class Board < ProtoBoard
-  def initialize(length, layout=nil)
-    @length = length
-    @size = length ** 2
-    @board = [:empty].cycle(@size).to_a
-    if layout
-      layout.each_with_index do |mark, i|
-        place(mark,i)
-      end
-    end
-  end
-
-  def to_a
-    @board
-  end
-  
-  def rows
-    @board.each_slice(3).to_a
-  end
-
-  def columns
-    @board.each_with_index.
-      group_by {|x,i| i % @length }.
-      values.
-      flatten(1).
-      map{ |x,i| x }.
-      each_slice(3).
-      to_a
+    format.each{ |row| STDERR.puts row.inspect }
   end
 
 end
-
-class HashBoard < ProtoBoard
-  def initialize
-    @board = Hash.new(:empty)
-  end
-
-  def to_a
-    @board
-  end
-
-end
-
-

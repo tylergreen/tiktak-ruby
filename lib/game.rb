@@ -9,6 +9,7 @@ class Game
   def initialize(board_side_length, player1, player2)
     @player1 = player1
     @player2 = player2
+    @length = board_side_length
     @size = board_side_length ** 2
   end
 
@@ -29,22 +30,26 @@ class Game
   end
   
   def start
-    board = Board.new(@board_size)
+    board = Board.new(@length)
     print_welcome_message
     player = @player1
-    [:x, :o].cycle.take(@board_size).each do |mark|
+    [:x, :o].cycle.take(@size).each do |mark|
       board.print
-      move = player.get_move
-      until valid_input?(move) and board.legal_move?(move)
-        move = player.get_move
+      input = player.get_move 
+      move = input.to_i
+      until valid_input?(input) and board.legal_move?(move)
+        puts "Invalid input: #{input}" unless valid_input?(input)
+        input = player.get_move 
+        move = input.to_i
       end
-      board.place(move, mark)
+      board.place(mark, move)
       if board.winner?
-        board.print
-        puts "winner!"
+        puts "Player #{mark} wins!"
         break
       end
+      player = switch(player)
     end
+    board.print
     puts "Tie game!" unless board.winner?
   end
 end
