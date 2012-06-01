@@ -5,12 +5,13 @@
 require 'board'
 
 class Game
-  attr_reader :size
+  attr_reader :size, :board
   def initialize(board_side_length, player1, player2)
     @player1 = player1
     @player2 = player2
     @length = board_side_length
     @size = board_side_length ** 2
+    @board = Board.new(@length)
   end
 
   def switch(player)
@@ -28,21 +29,21 @@ class Game
   def valid_input?(str)
     !!(str =~ /^[0-9]+$/)
   end
+
+  def get_move(player)
+    begin 
+      input = player.get_move 
+      move = input.to_i
+    end until valid_input?(input) and @board.legal_move?(move)
+    move
+  end
   
   def start
-    board = Board.new(@length)
     print_welcome_message
     player = @player1
     [:x, :o].cycle.take(@size).each do |mark|
       board.print
-      input = player.get_move 
-      move = input.to_i
-      until valid_input?(input) and board.legal_move?(move)
-        puts "Invalid input: #{input}" unless valid_input?(input)
-        input = player.get_move 
-        move = input.to_i
-      end
-      board.place(mark, move)
+      board.place(mark, get_move(player))
       if board.winner?
         puts "Player #{mark} wins!"
         break

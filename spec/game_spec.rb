@@ -2,6 +2,7 @@ require 'minitest/spec'
 require 'minitest/autorun'
 require 'game'
 require 'human'
+require 'mock_player'
 
 describe Game do
   before do
@@ -21,6 +22,10 @@ describe Game do
       assert_equal(9, Game.new(3, nil, nil).size)
       assert_equal(16, Game.new(4, nil, nil).size)
     end
+
+    it "keeps asking for input until it gets a valid and legal move" do
+      assert(2, @game.get_move( MockPlayer.new(["100", "monkey", "2"])))
+    end
     
     it "validates player input" do 
       (0...@game.size).each do |position|
@@ -30,8 +35,6 @@ describe Game do
       [":45", "[3m", " ", "monkey", "", "&sfd", "\n" ].each do |input|
         assert(not(@game.valid_input?(input)), "validated bad input: #{input}")
       end
-
-
     end
   end
 end    
