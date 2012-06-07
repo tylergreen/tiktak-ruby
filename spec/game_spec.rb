@@ -35,8 +35,8 @@ describe Game do
     it "has a turn sequence" do 
       assert_equal([[:x, @player1],
                     [:o, @player2],
-                    [:x, @player1]], @game.turns.take(3).to_a)
-      assert_equal(9, @game.turns.to_a.length)
+                    [:x, @player1]], @game.turns.take(3))
+      assert_equal(9, @game.turns.length)
     end
 
     it "can be started and played" do
