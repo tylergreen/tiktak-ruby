@@ -1,3 +1,6 @@
 h1. how to run tests
 rake test
 
+h1. how to play game
+rake play
+
