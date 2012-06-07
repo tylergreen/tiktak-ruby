@@ -20,6 +20,8 @@ describe Game do
 
     it "keeps asking for input until it gets a valid and legal move" do
       assert(2, @game.get_move( MockPlayer.new(["100", "monkey", "2"])))
+      assert(5, @game.get_move( MockPlayer.new(["jibberish", "5y", "5"])))
+      assert(0, @game.get_move( MockPlayer.new(["  7 ", "0", "5"])))
     end
     
     it "validates player input" do 

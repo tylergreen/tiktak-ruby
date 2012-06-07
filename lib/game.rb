@@ -4,6 +4,8 @@
 # prints messages
 require 'board'
 
+Welcome_message = "Welcome to TikTak Toe Ruby!"
+
 class Game
   attr_reader :size, :board
   def initialize(board_side_length, player1, player2)
@@ -22,10 +24,6 @@ class Game
     end
   end
 
-  def print_welcome_message
-    puts "Welcome to TikTak Toe Ruby!"
-  end
-
   def valid_input?(str)
     !!(str =~ /^[0-9]+$/)
   end
@@ -39,8 +37,8 @@ class Game
   end
   
   def start
-    print_welcome_message
-    [[:x, @player1], [:o, @player2]].cycle.take(@size).each do |mark, player|
+    puts Welcome_message
+    [[:x, @player1], [:o, @player2]].cycle(@size).each do |mark, player|
       board.print
       board.place(mark, get_move(player))
       if board.winner?

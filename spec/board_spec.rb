@@ -7,9 +7,11 @@ describe Board do
     @board = Board.new(3)
   end
   
-  describe "board functionality" do
-    it "is empty when created" do
+  describe "board api" do
+    it "has all empty spots when created" do
       assert_equal(@board.to_a, [:empty].cycle(@board.size).to_a())
+      assert_equal(Board.new(3).to_a, [:empty].cycle(9).to_a())
+      assert_equal(Board.new(4).to_a, [:empty].cycle(16).to_a())
     end
     
     it "knows if a spot is available" do
@@ -19,13 +21,12 @@ describe Board do
     end
 
     it "knows if a move is legal" do
-      assert( not(@board.legal_move?(-1)), "failed for negative numbers not allowed")
+      assert( not(@board.legal_move?(-1)), "allowed negative number as move")
       assert( not(@board.legal_move?(@board.size)), "off by one")
       (0...@board.size).each do |pos|
         assert(@board.legal_move?(pos), "failed for #{pos}")        
       end
       assert not(@board.place(:x,0).legal_move?(0))
-
     end
 
     it "can have pieces placed on it" do 
@@ -35,7 +36,13 @@ describe Board do
 
     it "provides access to rows" do
       assert_equal([[:empty, :empty, :empty]].cycle(@board.length).to_a, @board.rows)
-      assert([:x, :o, :empty], @board.place(:x,3).place(:o,4).rows[2] )
+      assert_equal([[:empty, :empty,:empty],
+              [:x, :o, :empty],
+              [:empty, :empty, :empty]],
+              @board.place(:x,3).place(:o,4).rows )
+      assert_equal([:x, :o, :empty], @board.place(:x,3).place(:o,4).rows[1] )
+      assert_equal([:x, :o, :empty], @board.place(:x,6).place(:o,7).rows[2] )
+
     end
     
     it "provides access to columns" do
@@ -48,6 +55,8 @@ describe Board do
   it "provides access to its diagonals" do
     assert_equal([[:x, :x, :empty], [:empty, :x, :o]],
                  @board.place(:x, 0).place(:x, 4).place(:o, 6).diagonals)
+    assert_equal([[:empty, :x, :o], [:x, :x, :empty]],
+                 Board.new(3).place(:x, 2).place(:x, 4).place(:o, 8).diagonals)
   end
 
   it "can detect a winner" do
