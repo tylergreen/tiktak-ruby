@@ -29,9 +29,12 @@ class Board
       to_a
   end
 
-
   def available?(position)
     @board[position] == :empty 
+  end
+
+  def available_positions
+    (0..@size).select{ |position| available? position }
   end
 
   def legal_move?(position)
@@ -61,7 +64,7 @@ class Board
 
   def format
     rows.map do |r|
-       r.map { |spot| spot == :empty ? '_' : spot }
+       r.map { |position| position == :empty ? '_' : position }
     end
   end
 

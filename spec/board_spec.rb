@@ -74,6 +74,13 @@ describe Board do
    it "can format itself to look prettier" do
     assert_equal([["_"].cycle(@board.length).to_a].cycle(@board.length).to_a, @board.format)
   end
+
+  it "will tell you what positions are available" do
+    assert_equal((0...@board.size).to_a, @board.available_positions)
+    assert_equal((0..7).to_a, @board.place(:x, 8).available_positions)
+    assert_equal((1..7).to_a, @board.place(:x,0).place(:o,8).available_positions)
+    assert_equal([3,4,5], Board.new(3,[:x,:x,:o,:empty, :empty, :empty, :o, :x, :o]).available_positions)
+  end
   
 
 

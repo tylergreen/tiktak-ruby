@@ -7,6 +7,8 @@ end
 
 task :play do
   sh "ruby -Ilib tiktak.rb"
-end  
+end
+
+
 	 
 

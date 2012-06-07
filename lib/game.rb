@@ -24,8 +24,8 @@ class Game
     end
   end
 
-  def valid_input?(str)
-    !!(str =~ /^[0-9]+$/)
+  def valid_input?(input)
+    input.class == Fixnum or (input =~ /^[0-9]+$/)
   end
 
   def get_move(player)
@@ -40,8 +40,9 @@ class Game
     [[:x, @player1], [:o, @player2]].cycle.take(@size)
   end
 
+
   def start
-    [@player1, @player2].each { |p| p.echo Welcome_message }
+    puts Welcome_message
     winner = false
     turns.each do |mark, player|
       board.place(mark, get_move(player))
@@ -50,8 +51,9 @@ class Game
         break 
       end
     end
-    winner or "Tie Game!" 
+    board.print
+    puts (winner or "Tie Game!")
+    (winner or "Tie Game!")
   end
 
 end
-
