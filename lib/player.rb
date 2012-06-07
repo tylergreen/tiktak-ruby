@@ -2,6 +2,11 @@ class Player
 
   def initialize
 
- end
+  end
+
+  def echo(msg)
+    
+  end
+
  
 end

@@ -30,24 +30,28 @@ class Game
 
   def get_move(player)
     begin 
-      input = player.get_move 
+      input = player.get_move(@board) 
       move = input.to_i
     end until valid_input?(input) and @board.legal_move?(move)
     move
+  end 
+
+  def turns
+    [[:x, @player1], [:o, @player2]].cycle.take(@size)
   end
-  
+
   def start
-    puts Welcome_message
-    [[:x, @player1], [:o, @player2]].cycle(@size).each do |mark, player|
-      board.print
+    [@player1, @player2].each { |p| p.echo Welcome_message }
+    winner = false
+    turns.each do |mark, player|
       board.place(mark, get_move(player))
       if board.winner?
-        puts "Player #{mark} wins!"
-        break
+        winner = "Player #{mark} wins!"
+        break 
       end
     end
-    board.print
-    puts "Tie game!" unless board.winner?
+    winner or "Tie Game!" 
   end
+
 end
 
