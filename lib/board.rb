@@ -62,6 +62,10 @@ class Board
     winner.first if winner
   end
 
+  def terminal?
+    winner? or available_positions.empty?
+  end
+
   def format
     rows.map do |r|
        r.map { |position| position == :empty ? '_' : position }
