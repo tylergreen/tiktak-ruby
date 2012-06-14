@@ -2,6 +2,7 @@ require 'minitest/spec'
 require 'minitest/autorun'
 require 'game'
 require 'players/minimax/minimax'
+require 'players/minimax/minimax_ai'
 
 describe Minimax do
   before do
@@ -31,14 +32,14 @@ describe Minimax do
       assert_equal(1, Minimax.value(@o_win_board, :o))
     end
 
-    it "plays moves that lead inevitably to victory" do
+    it "plays moves that lead to victory" do
       assert_equal(2, Minimax.minimax(:x, Board.new(3, [:x, :x, :empty,
                                                         :x, :o, :o,
                                                         :o, :x, :o])))
       assert_equal(2, Minimax.minimax(:x, Board.new(3, [:x, :x, :empty,
                                                         :o, :empty, :o,
                                                         :empty, :empty, :empty]))) 
-     assert_equal(6, Minimax.minimax(:o, Board.new(3, [:o, :x, :empty,
+      assert_equal(6, Minimax.minimax(:o, Board.new(3, [:o, :x, :empty,
                                                        :o, :x, :empty,
                                                        :empty, :empty, :empty])))
       assert_equal(7, Minimax.minimax(:o, Board.new(3, [:empty, :x, :empty,
@@ -139,12 +140,9 @@ describe Minimax do
                                                         :o, :empty, :o])))
     end
 
-b = Board.new(3, [:x, :o, :x, 
-                  :o, :empty, :empty, 
-                  :empty, :empty, :x])
-
-
-      
-
+    it "always ties itself" do
+      g = Game.new(3, MinimaxAI.new(:x), MinimaxAI.new(:o))
+      assert_equal("Tie Game!", g.start)
+    end
   end
 end
