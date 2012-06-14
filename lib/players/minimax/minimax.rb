@@ -26,17 +26,16 @@ module Minimax
    if board.terminal? 
      value(board, player)
    else 
-     ok_move = false
-     losing_move = false
+     ok_move, losing_move = false
      board.available_moves.find do |move|
        case move_value(switch(player), move, board)
-         when 0
-         ok_move = move
-         false
-         when 1
-         losing_move = move
+       when 1 
+         losing_move = true
          true
-         else
+       when 0
+         ok_move = true
+         false
+       else
          false
        end
      end
