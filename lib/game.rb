@@ -16,14 +16,6 @@ class Game
     @board = Board.new(@length)
   end
 
-  def switch(player)
-    if player == @player1
-      @player2
-    else
-      @player1
-    end
-  end
-
   def valid_input?(input)
     input.class == Fixnum or (input =~ /^[0-9]+$/)
   end
@@ -39,7 +31,6 @@ class Game
   def turns
     [[:x, @player1], [:o, @player2]].cycle.take(@size)
   end
-
 
   def start
     puts Welcome_message

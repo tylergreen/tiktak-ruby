@@ -3,7 +3,7 @@ require 'players/player'
 class RandomAI < Player
   
   def get_move(board)
-    board.available_positions.sample
+    board.available_moves.sample
   end
 
 

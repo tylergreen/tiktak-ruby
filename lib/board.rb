@@ -33,8 +33,8 @@ class Board
     @board[position] == :empty 
   end
 
-  def available_positions
-    (0..@size).select{ |position| available? position }
+  def available_moves
+    (0...@size).select{ |position| available? position }
   end
 
   def legal_move?(position)
@@ -48,7 +48,13 @@ class Board
     @board[position] = marker
     self
   end
-  
+
+  def clone_and_place(marker, position)
+    clone = Board.new(@length,@board.to_a)
+    clone.place(marker, position)
+    clone
+  end
+
   def diagonals
     d1 = Range.new(0, @size).step(@length + 1).map{ |pos| @board[pos] }
     d2 = Range.new(@length - 1, @size - @length).step(@length - 1).map{ |pos| @board[pos] }
@@ -63,7 +69,7 @@ class Board
   end
 
   def terminal?
-    winner? or available_positions.empty?
+    winner? or available_moves.empty?
   end
 
   def format
