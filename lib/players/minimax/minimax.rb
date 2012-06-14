@@ -21,24 +21,35 @@ module Minimax
    end
  end
 
-# assumes player just made a move
-# returns the value for a board
  def self.move_value(player, move, board)
    board = board.clone_and_place(player, move)
-   if board.terminal?  # I know what the value of a terminal board is for myself
+   if board.terminal? 
      value(board, player)
-   else # otherwise I assume opponent picks his best move
-     score = board.available_moves.map do |move|
-       move_value(switch(player), move, board)
-     end.max 
-     - score
+   else 
+     ok_move = false
+     losing_move = false
+     board.available_moves.find do |move|
+       case move_value(switch(player), move, board)
+         when 0
+         ok_move = move
+         false
+         when 1
+         losing_move = move
+         true
+         else
+         false
+       end
+     end
+     if losing_move 
+       -1
+     elsif ok_move
+       0
+     else
+       1  
+     end
    end
  end
  
- def self.minimax_old(player, board)
-   board.available_moves.max_by { |move| value_for(player, board.clone_and_place(player, move))}
- end
-
 end
 
 
