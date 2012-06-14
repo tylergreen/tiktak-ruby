@@ -1,4 +1,6 @@
-class Human 
+require 'players/player'
+
+class Human < Player
 
   def echo(msg)
     puts msg

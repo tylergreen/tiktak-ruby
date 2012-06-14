@@ -1,7 +1,7 @@
 class Player 
 
-  def initialize
-
+  def initialize(marker=nil)
+    @marker = marker
   end
 
   def echo(msg)
