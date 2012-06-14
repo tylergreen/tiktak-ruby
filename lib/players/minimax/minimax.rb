@@ -17,17 +17,19 @@ module Minimax
 
  def self.minimax(player, board)
    board.available_moves.max_by do |move|
-     value_for(player, board.clone_and_place(player, move)) 
+     move_value(player, move, board)
    end
  end
 
- # assumes just made move , returns value for a board
- def self.value_for(player, board)
+# assumes player just made a move
+# returns the value for a board
+ def self.move_value(player, move, board)
+   board = board.clone_and_place(player, move)
    if board.terminal?  # I know what the value of a terminal board is for myself
      value(board, player)
    else # otherwise I assume opponent picks his best move
      score = board.available_moves.map do |move|
-       value_for(switch(player), board.clone_and_place(switch(player), move))
+       move_value(switch(player), move, board)
      end.max 
      - score
    end

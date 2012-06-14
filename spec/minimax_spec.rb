@@ -47,11 +47,11 @@ describe Minimax do
     end
 
     it "rates" do 
-      assert_equal(-1, Minimax.value_for(:x, Board.new(3, [:x, :x, :o,
-                                                        :empty, :x, :empty,
+      assert_equal(-1, Minimax.move_value(:x, 1, Board.new(3, [:x, :empty, :o,
+                                                           :empty, :x, :empty,
                                                            :empty, :empty, :o])))
-      assert_equal(0, Minimax.value_for(:x, Board.new(3, [:empty, :x, :o,
-                                                           :o,    :x,  :x,
+      assert_equal(0, Minimax.move_value(:x, 5, Board.new(3, [:empty, :x, :o,
+                                                           :o,    :x,  :empty,
                                                            :empty, :empty, :o])))
 
     end
@@ -75,9 +75,9 @@ describe Minimax do
     end
 
     it "x blocks o vertically" do
-      assert_equal(-1, Minimax.value_for(:x, Board.new(3, [:x, :o, :empty,
+      assert_equal(-1, Minimax.move_value(:x, 8, Board.new(3, [:x, :o, :empty,
                                                         :x, :o, :empty,
-                                                        :empty, :empty, :x])))
+                                                        :empty, :empty, :empty])))
     end
 
     it "o block horizontally" do
@@ -87,24 +87,16 @@ describe Minimax do
     end
 
     it "a win for x if bad for o" do
-      assert_equal(-1, Minimax.value_for(:o, Board.new(3, [:x, :x, :x,
+      assert_equal(-1, Minimax.move_value(:o, 4, Board.new(3, [:x, :x, :empty,
                                                             :o, :empty, :empty,
                                                             :empty, :empty, :empty])))
     end
 
-    it "a win for x if bad for o" do
-      assert_equal(-1, Minimax.value_for(:o, Board.new(3, [:x, :empty, :x,
+    it "any move is bad when you are forked" do
+      assert_equal(-1, Minimax.move_value(:o, 1, Board.new(3, [:x, :empty, :x,
                                                             :o, :x, :empty,
                                                             :empty, :empty, :empty])))
     end
-
-    it "forks are winning position for x" do
-      assert_equal(1, Minimax.value_for(:x, Board.new(3, [:x, :empty, :x,
-                                                            :o, :x, :empty,
-                                                            :empty, :empty, :empty])))
-    end
-
-
 
 
     it "o block horizontally 2" do
@@ -122,15 +114,15 @@ describe Minimax do
     end
 
    it "o values boards" do
-      assert_equal(-1, Minimax.value_for(:o, Board.new(3, [:x, :o, :empty,
+      assert_equal(-1, Minimax.move_value(:o, 2, Board.new(3, [:x, :empty, :empty,
                                                            :o, :x, :empty,
                                                            :empty, :empty, :empty])))
     end
 
    it "o values boards 3" do
-      assert_equal(0, Minimax.value_for(:o, Board.new(3, [:x, :o, :empty,
+      assert_equal(0, Minimax.move_value(:o, 8, Board.new(3, [:x, :o, :empty,
                                                            :o, :x, :empty,
-                                                           :empty, :empty, :o])))
+                                                           :empty, :empty, :empty])))
     end
 
 
