@@ -122,8 +122,25 @@ describe Board do
     assert_equal(:o, @empty_board.place(:o,1).place(:o,4).place(:o,7).winner?, "failed to detect column win")
   end
 
+  it "can detect a block winner" do
+    assert_equal(:x, Board.new(3, [:x, :x, :o,
+                                   :x, :x, :o,
+                                   :o, :o, :empty]).winner?)
+    assert_equal(:x, Board.new(4, [:x, :x, :o, :empty,
+                                   :x, :x, :o,:empty,
+                                   :o, :o, :empty, :empty,
+                                   :empty, :empty, :o, :empty,
+                                  ]).winner?)
+  end
+
+  it "provides an interface to all the 2x2 blocks on the board" do
+    assert_equal(4, Board.new(3).blocks.length)
+    assert_equal([:x, :empty, :empty, :x], Board.new(3).place(:x, 0).place(:x, 4).blocks.first)
+    assert_equal([:x, :x, :x, :x], Board.new(4).place(:x, 0).place(:x, 1).place(:x, 4).place(:x, 5).blocks.first)
+  end
+
   it "detects a win on 4x4 board" do
-    assert_equal(:o, Board.new(4).place(:o,1).place(:o,5).place(:o,9).place(:o,13).winner?)
+      assert_equal(:o, Board.new(4).place(:o,1).place(:o,5).place(:o,9).place(:o,13).winner?)
   end
 
   it "knows when the game is in a terminal position" do
