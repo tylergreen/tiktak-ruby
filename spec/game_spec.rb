@@ -42,16 +42,16 @@ describe Game do
       assert_equal(:x,
                    Game.new(3,
                             MockPlayer.new(%w[0 1 2 ]),
-                            MockPlayer.new(%w[ 6 4 8])).start) 
+                            MockPlayer.new(%w[ 6 4 8])).play) 
       
       assert_equal(:o,
                    Game.new(3,
                             MockPlayer.new(%w[0 4 2 ]),
-                            MockPlayer.new(%w[ 6 7 8 ])).start)
+                            MockPlayer.new(%w[ 6 7 8 ])).play)
       assert_equal("Tie Game!", 
                    Game.new(3,
                             MockPlayer.new(%w[ 2 3 4 7 8 ]),
-                            MockPlayer.new(%w[ 0 1 5 6])).start)
+                            MockPlayer.new(%w[ 0 1 5 6])).play)
 
     end
   end

@@ -8,7 +8,7 @@ Welcome_message = "Welcome to TikTak Toe Ruby!"
 
 class Game
   attr_reader :size, :board
-  def initialize(board_side_length, player1, player2)
+  def initialize(board_side_length, player1, player2, block_rule_option=false)
     @player1 = player1
     @player2 = player2
     @length = board_side_length
@@ -22,6 +22,7 @@ class Game
 
   def get_move(player)
     begin 
+      @board.print
       input = player.get_move(@board) 
       move = input.to_i
     end until valid_input?(input) and @board.legal_move?(move)
@@ -32,20 +33,10 @@ class Game
     [[:x, @player1], [:o, @player2]].cycle.take(@size)
   end
 
-  def greet
-    puts Welcome_message
-    
-  end
-
-  def start
-    puts Welcome_message
-    winner = turns.find( lambda{[ "Tie Game!"]} ) do |mark, player|
-      board.print
+  def play
+    turns.find( lambda{[ "Tie Game!"]} ) do |mark, player|
       board.place(mark, get_move(player)).winner?
-    end
-    board.print
-    puts winner.first
-    winner.first
+    end.first
   end
 
 end
