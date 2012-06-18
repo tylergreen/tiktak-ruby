@@ -18,7 +18,7 @@ describe Board do
     @incomplete_board = Board.new(3, [:empty, :x, :o, 
                                       :empty, :o, :empty,
                                       :empty, :x, :empty])
-                              
+    @four_board = Board.new(4)
   end
   
   describe "board api" do
@@ -79,7 +79,11 @@ describe Board do
               @empty_board.place(:x,3).place(:o,4).rows )
       assert_equal([:x, :o, :empty], @empty_board.place(:x,3).place(:o,4).rows[1] )
       assert_equal([:x, :o, :empty], @empty_board.place(:x,6).place(:o,7).rows[2] )
-
+    end
+    
+    it "rows can be arbitrarily long" do
+      board4 = Board.new(4)
+      assert(board4.rows.all? { |row| row.length == board4.length})
     end
     
     it "provides access to columns" do
@@ -103,6 +107,11 @@ describe Board do
     assert_equal(:o, @empty_board.place(:o,0).place(:o,4).place(:o,8).winner?, "failed to detect diagonal win")
     assert_equal(:o, @empty_board.place(:o,1).place(:o,4).place(:o,7).winner?, "failed to detect column win")
   end
+
+  it "detects a win on 4x4 board" do
+    assert_equal(:o, @empty_board.place(:o,1).place(:o,4).place(:o,7).place(:o,10).winner?)
+  end
+
 
   it "knows when the game is in a terminal position" do
     assert(not(Board.new(3).terminal?))

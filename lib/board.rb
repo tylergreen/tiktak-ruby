@@ -16,7 +16,7 @@ class Board
   end
   
   def rows
-    @board.each_slice(3).to_a
+    @board.each_slice(@length).to_a
   end
 
   def columns
@@ -25,7 +25,7 @@ class Board
       values.
       flatten(1).
       map{ |x,i| x }.
-      each_slice(3).
+      each_slice(@length).
       to_a
   end
 
