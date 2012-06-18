@@ -32,19 +32,20 @@ class Game
     [[:x, @player1], [:o, @player2]].cycle.take(@size)
   end
 
+  def greet
+    puts Welcome_message
+    
+  end
+
   def start
     puts Welcome_message
-    winner = false
-    turns.each do |mark, player|
-      board.place(mark, get_move(player))
-      if board.winner?
-        winner = "Player #{mark} wins!"
-        break 
-      end
+    winner = turns.find( lambda{[ "Tie Game!"]} ) do |mark, player|
+      board.print
+      board.place(mark, get_move(player)).winner?
     end
     board.print
-    puts (winner or "Tie Game!")
-    (winner or "Tie Game!")
+    puts winner.first
+    winner.first
   end
 
 end

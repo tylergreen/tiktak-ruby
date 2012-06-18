@@ -39,12 +39,12 @@ describe Game do
     end
 
     it "can be started and played" do
-      assert_equal("Player x wins!",
+      assert_equal(:x,
                    Game.new(3,
                             MockPlayer.new(%w[0 1 2 ]),
                             MockPlayer.new(%w[ 6 4 8])).start) 
       
-      assert_equal("Player o wins!",
+      assert_equal(:o,
                    Game.new(3,
                             MockPlayer.new(%w[0 4 2 ]),
                             MockPlayer.new(%w[ 6 7 8 ])).start)
