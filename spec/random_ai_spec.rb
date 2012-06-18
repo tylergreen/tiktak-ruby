@@ -18,7 +18,7 @@ describe RandomAI do
     end
     
     it "can play a game" do
-      assert(Game.new(3, RandomAI.new, RandomAI.new).start)
+      assert(Game.new(3, RandomAI.new, RandomAI.new).play)
     end
   end
 
