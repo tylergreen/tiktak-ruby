@@ -91,6 +91,11 @@ describe Board do
       assert_equal([:x, :o, :x], @empty_board.place(:x, 0).place(:o, 3).place(:x, 6).columns.first)
       assert_equal([:x, :o, :x], @empty_board.place(:x, 1).place(:o, 4).place(:x, 7).columns[1])
     end
+
+    it "can handle arbitrarily sized coluns" do
+      board4 = Board.new(4)
+      assert(board4.columns.all? { |col| col.length == board4.length})
+    end
   end
 
   it "provides access to its diagonals" do
@@ -98,6 +103,15 @@ describe Board do
                  @empty_board.place(:x, 0).place(:x, 4).place(:o, 6).diagonals)
     assert_equal([[:empty, :x, :o], [:x, :x, :empty]],
                  Board.new(3).place(:x, 2).place(:x, 4).place(:o, 8).diagonals)
+  end
+
+  it "provides access to diagonals on 4x4 boards" do
+    board4 = Board.new(4)
+    assert(board4.rows.all? { |row| row.length == board4.length})
+  end
+
+  it "returns nil if no winner" do
+    assert_equal(nil, Board.new(4).winner?)
   end
 
   it "can detect a winner" do
@@ -109,9 +123,8 @@ describe Board do
   end
 
   it "detects a win on 4x4 board" do
-    assert_equal(:o, @empty_board.place(:o,1).place(:o,4).place(:o,7).place(:o,10).winner?)
+    assert_equal(:o, Board.new(4).place(:o,1).place(:o,5).place(:o,9).place(:o,13).winner?)
   end
-
 
   it "knows when the game is in a terminal position" do
     assert(not(Board.new(3).terminal?))

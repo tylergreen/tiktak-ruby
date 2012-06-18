@@ -61,11 +61,12 @@ class Board
     [d1,d2]
   end
 
+  # needs to return nil so minimax will work
   def winner?
-    winner = (rows + columns + diagonals).find do |sequence|
-      sequence.first != :empty and sequence.group_by{ |x| x }.length == 1
+    winner = (rows + columns + diagonals).find() do |sequence|
+      sequence.first != :empty and sequence.all?{ |x| x == sequence.first }
     end
-    winner.first if winner
+    winner ? winner.first : nil
   end
 
   def terminal?
