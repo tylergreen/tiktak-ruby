@@ -8,7 +8,7 @@ class Human < Player
 
   def get_move(board)
     board.print
-    STDIN.read(2)
+    STDIN.readline
   end
   
 end
