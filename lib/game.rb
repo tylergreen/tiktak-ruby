@@ -1,7 +1,5 @@
 require 'board'
 
-Welcome_message = "Welcome to TikTak Toe Ruby!"
-
 class Game
   attr_reader :size, :board
   def initialize(board_side_length, player1, player2, block_rule_option=false)
@@ -20,11 +18,9 @@ class Game
 
   def get_move(player)
     begin 
-      @board.print
       input = player.get_move(@board) 
-      move = input.to_i
-    end until valid_input?(input) and @board.legal_move?(move)
-    move
+    end until valid_input?(input) and @board.available?(input.to_i)
+    input.to_i
   end 
 
   def play

@@ -78,7 +78,8 @@ class Board
   end
 
   def print
-    format.each{ |row| STDERR.puts row.inspect }
+    format.each{ |row| puts row.inspect }
   end
+
 
 end
