@@ -5,9 +5,7 @@ class Board
     @size = length ** 2
     @board = [:empty].cycle(@size).to_a
     if layout
-      layout.each_with_index do |mark, i|
-        place(mark,i)
-      end
+      layout.each_with_index { |mark, i| place(mark,i) }
     end
   end
 

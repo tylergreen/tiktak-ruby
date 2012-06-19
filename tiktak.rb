@@ -3,7 +3,7 @@ require 'players/human'
 require 'players/random_ai'
 require 'players/minimax/minimax_ai'
 
-class TikTak
+module TikTak
 
   def self.players
     [['0', "Human", Human],
