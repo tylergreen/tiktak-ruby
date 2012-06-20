@@ -8,9 +8,10 @@ class Prompt
     begin
       @output.puts msg
       input = @input.readline
-      valid = yield input
-    end until valid
-    input
+      valid_result = yield input
+      @output.puts "Try again -- Invalid input: #{input}"
+    end until valid_result
+    valid_result
   end
 
   def prompt2(msg)

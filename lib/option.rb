@@ -1,8 +1,6 @@
 class Option
-  def initialize(options_hash, input=STDIN, output=STDOUT)
+  def initialize(options_hash)
     @options = options_hash
-    @input = input
-    @output = output
   end
   
   def to_s
@@ -11,28 +9,17 @@ class Option
     end.join("\n")
   end
 
-  def valid_input(str)
-    str =~ /^[0-9]+$/
-  end
-
-  def select(i)
-    if i >= 0 and i < @options.length 
-      @options.values[i] 
+  def select(str)
+    if str =~ /^[0-9]+$/ 
+      i = str.to_i
+      if i >= 0 and i < @options.length 
+        [@options.values[i]] ## wrap value in array to emulate haskell Maybe -- [false] is a valid selection
+      else
+        false
+      end
     else
-      :invalid_option
+      false
     end
-  end
-
-  def prompt(msg)
-    @output.puts msg
-    @output.puts self.to_s
-    begin
-      input = @input.readline
-      selection = select(input.to_i)
-      verified = valid_input(input) && (selection != :invalid_option)
-      @output.puts "Try again, invalid choice: #{input}" unless verified
-    end until verified
-    selection
   end
   
 end
