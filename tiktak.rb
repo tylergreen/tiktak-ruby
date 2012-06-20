@@ -22,10 +22,10 @@ module TikTak
 
   def self.main
     puts "Welcome to Tyler's Tik Tak To Game!"
-    player1 = Players.prompt("select first player:"){ STDIN.readline}.new(:x)
-    player2 = Players.prompt("select second player:"){ STDIN.readline}.new(:o)
-    game_size = Board_sizes.prompt("select game size:"){ STDIN.readline }
-    block_win = Rules.prompt("select rules:"){ STDIN.readline}
+    player1 = Players.prompt("select first player:").new(:x)
+    player2 = Players.prompt("select second player:").new(:o)
+    game_size = Board_sizes.prompt("select game size:")
+    block_win = Rules.prompt("select rules:")
     game = Game.new(game_size, player1, player2, block_win)
     result = game.play
     game.board.print

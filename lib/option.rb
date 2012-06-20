@@ -1,7 +1,8 @@
 class Option
-  def initialize(options_hash, stdout=STDOUT)
+  def initialize(options_hash, input=STDIN, output=STDOUT)
     @options = options_hash
-    @stdout = stdout
+    @input = input
+    @output = output
   end
   
   def to_s
@@ -23,21 +24,13 @@ class Option
   end
 
   def prompt(msg)
-    @stdout.puts msg
-    @stdout.puts self.to_s
+    @output.puts msg
+    @output.puts self.to_s
     begin
-      input = if block_given?
-                yield
-              else
-                STDIN.readline
-              end
+      input = @input.readline
       selection = select(input.to_i)
-      verified = if valid_input(input) and selection != :invalid_option
-                   true
-                 else
-                   @stdout.puts "invalid selection: #{input} Try again."
-                   false
-                 end
+      verified = valid_input(input) && (selection != :invalid_option)
+      @output.puts "Try again, invalid choice: #{input}" unless verified
     end until verified
     selection
   end
