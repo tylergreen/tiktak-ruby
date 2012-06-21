@@ -3,6 +3,7 @@ require 'option'
 require 'prompt'
 require 'players/human'
 require 'players/random_ai'
+require 'players/medium_ai'
 require 'players/minimax/minimax_ai'
 require 'YAML'
 
@@ -10,6 +11,7 @@ module TikTak
 
   Players = Option.new({ 'human' => Human,
                           'weak' => RandomAI,
+                         'barely smart' => MediumAI,
                           'unbeateable' => MinimaxAI
                         })
 
