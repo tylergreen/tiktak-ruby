@@ -9,7 +9,7 @@ class Prompt
       @output.puts msg
       input = @input.readline
       valid_result = yield input
-      @output.puts "Try again -- Invalid input: #{input}"
+      @output.puts "Try again -- Invalid input: #{input}" unless valid_result
     end until valid_result
     valid_result
   end
