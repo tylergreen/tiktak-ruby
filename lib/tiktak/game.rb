@@ -1,5 +1,5 @@
-require 'board'
-require 'block_rule_board'
+require 'tiktak/board'
+require 'tiktak/block_rule_board'
 
 class Game
   attr_reader :size, :board

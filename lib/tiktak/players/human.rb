@@ -1,4 +1,4 @@
-require 'players/player'
+require 'tiktak/players/player'
 
 class Human < Player
 

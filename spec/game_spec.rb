@@ -1,7 +1,7 @@
 require 'minitest/spec'
 require 'minitest/autorun'
-require 'game'
-require 'players/mock_player'
+require 'tiktak/game'
+require 'tiktak/players/mock_player'
 
 describe Game do
   before do

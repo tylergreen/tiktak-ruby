@@ -1,8 +1,8 @@
 require 'minitest/spec'
 require 'minitest/autorun'
-require 'game'
-require 'players/minimax/minimax'
-require 'players/minimax/minimax_ai'
+require 'tiktak/game'
+require 'tiktak/players/minimax/minimax'
+require 'tiktak/players/minimax/minimax_ai'
 
 describe Minimax do
   before do

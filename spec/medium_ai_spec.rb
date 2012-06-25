@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/spec'
-require 'players/medium_ai'
+require 'tiktak/players/medium_ai'
 
 describe MediumAI do
   before do

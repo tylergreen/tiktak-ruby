@@ -1,7 +1,7 @@
 require 'minitest/spec'
 require 'minitest/autorun'
-require 'board'
-require 'players/random_ai'
+require 'tiktak/board'
+require 'tiktak/players/random_ai'
 
 describe Board do
   before do

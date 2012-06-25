@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/spec'
-require 'option'
+require 'tiktak/option'
 require 'stringio'
 
 describe Option do

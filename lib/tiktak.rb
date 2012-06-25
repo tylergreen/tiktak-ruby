@@ -1,11 +1,10 @@
-require 'game'
-require 'option'
-require 'prompt'
-require 'players/human'
-require 'players/random_ai'
-require 'players/medium_ai'
-require 'players/minimax/minimax_ai'
-require 'YAML'
+require 'tiktak/game'
+require 'tiktak/option'
+require 'tiktak/prompt'
+require 'tiktak/players/human'
+require 'tiktak/players/random_ai'
+require 'tiktak/players/medium_ai'
+require 'tiktak/players/minimax/minimax_ai'
 
 module TikTak
 
@@ -39,4 +38,3 @@ module TikTak
   end
 end
 
-TikTak.main

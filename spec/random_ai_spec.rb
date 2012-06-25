@@ -1,8 +1,8 @@
 require 'minitest/spec'
 require 'minitest/autorun'
-require 'game'
-require 'players/mock_player'
-require 'players/random_ai'
+require 'tiktak/game'
+require 'tiktak/players/mock_player'
+require 'tiktak/players/random_ai'
 
 
 describe RandomAI do

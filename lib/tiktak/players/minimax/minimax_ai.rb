@@ -1,5 +1,5 @@
-require 'players/minimax/minimax'
-require 'players/player'
+require 'tiktak/players/minimax/minimax'
+require 'tiktak/players/player'
 
 class MinimaxAI < Player
 

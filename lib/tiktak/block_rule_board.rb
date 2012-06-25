@@ -1,4 +1,4 @@
-require 'board'
+require 'tiktak/board'
 
 class BlockRuleBoard < Board
 

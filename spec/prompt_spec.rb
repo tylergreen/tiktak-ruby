@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/spec'
-require 'prompt'
+require 'tiktak/prompt'
 require 'stringio'
 
 describe Prompt do
