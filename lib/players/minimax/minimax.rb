@@ -15,20 +15,24 @@ module Minimax
    end
  end
 
+ MaxDepth = 10
+
  def self.minimax(player, board)
    board.available_moves.max_by do |move|
      move_value(player, move, board)
    end
  end
 
- def self.move_value(player, move, board)
+ def self.move_value(player, move, board, depth=MaxDepth, limit=false)
    board = board.clone_and_place(player, move)
    if board.terminal? 
      value(board, player)
+   elsif depth = 0 and limit
+     0 # unknown
    else 
      ok_move, losing_move = false
      board.available_moves.find do |move|
-       case move_value(switch(player), move, board)
+       case move_value(switch(player), move, board, depth - 1, limit)
        when 1 
          losing_move = true
          true

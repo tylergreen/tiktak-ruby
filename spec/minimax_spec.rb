@@ -140,6 +140,11 @@ describe Minimax do
                                                         :o, :empty, :o])))
     end
 
+    it "only searches n moves deep" do
+      assert_equal(0, Minimax.move_value(:x, 0, Board.new(4), 0, true))
+      assert_equal(0, Minimax.move_value(:x, 0, Board.new(4), 3, true))
+    end
+
     it "always ties itself" do
 #      g = Game.new(3, MinimaxAI.new(:x), MinimaxAI.new(:o))
 #     assert_equal("Tie Game!", g.start)
