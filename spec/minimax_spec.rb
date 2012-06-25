@@ -141,8 +141,8 @@ describe Minimax do
     end
 
     it "only searches n moves deep" do
-      assert_equal(0, Minimax.move_value(:x, 0, Board.new(4), 0, true))
-      assert_equal(0, Minimax.move_value(:x, 0, Board.new(4), 3, true))
+      assert_equal(0, Minimax.move_value(:x, 0, Board.new(4), true, 0))
+      assert_equal(0, Minimax.move_value(:x, 0, Board.new(4), true, 3))
     end
 
     it "always ties itself" do
