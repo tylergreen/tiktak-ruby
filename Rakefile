@@ -1,4 +1,8 @@
+# #!/usr/bin/env rake
+# require "bundler/gem_tasks"
+
 $:.unshift File.expand_path("../lib", __FILE__)
+
 require 'rake'
 require 'rake/testtask'
 require 'tiktak'
