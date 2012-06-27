@@ -4,9 +4,4 @@ class Player
     @marker = marker
   end
 
-  def echo(msg)
-    
-  end
-
- 
 end
