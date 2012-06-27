@@ -15,3 +15,8 @@ class TCP_Display
   end
     
 end
+
+class NoDisplay
+  def show(board)
+  end
+end

@@ -4,7 +4,7 @@ require 'tiktak/frontends'
 
 class Game
   attr_reader :size, :board
-  def initialize(board_side_length, player1, player2, block_rule_option=false, output=CL_Display.new)
+  def initialize(board_side_length, player1, player2, block_rule_option=false, output=NoDisplay.new)
     @player1 = player1
     @player2 = player2
     @output = output
