@@ -71,12 +71,12 @@ class Board
     winner? or available_moves.empty?
   end
 
-  def format
-    to_a.map { |position| position == :empty ? '' : position }
+  def format(empty)
+    to_a.map { |position| position == :empty ? empty : position }
   end
 
-  def print
-    format.each{ |row| puts row.inspect }
+  def to_s
+    format('_').each_slice(3).map{|row| row.join(' ') }.join("\n")
   end
 
 end

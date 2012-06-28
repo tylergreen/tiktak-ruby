@@ -3,7 +3,7 @@ require 'socket'
 
 class CL_Display
   def show(board)
-    board.print
+    puts board.to_s
   end
 
   def result(result)
