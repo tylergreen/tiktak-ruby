@@ -26,21 +26,14 @@ module TikTak
 
   def self.gui
     game_size = 3
-#    player1 = TCP_Player.new(:x)
-#    player2 = TCP_Player.new(:o)
-    player1 = Human.new(:x)
-    player2 = Human.new(:o)
-    # move = player1.get_move(1)
-    # puts "move #{move}"
-    # move = player2.get_move(1)
-    # puts "move 2 #{move}"
+    player1 = TCP_Player.new(:x)
+    player2 = TCP_Player.new(:o)
     block_win = false
     game = Game.new(game_size, player1, player2, block_win, TCP_Display.new)
     puts "starting gui game"
     result = game.play
     puts "thanks for playing!"
   end
-  
 
   def self.main
     puts "Welcome to Tyler's Tik Tak To Game!"
