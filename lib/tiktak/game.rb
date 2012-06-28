@@ -3,11 +3,12 @@ require 'tiktak/block_rule_board'
 require 'tiktak/frontends'
 
 class Game
-  attr_reader :size, :board
+  attr_reader :size, :board, :result
   def initialize(board_side_length, player1, player2, block_rule_option=false, output=NoDisplay.new)
     @player1 = player1
     @player2 = player2
     @output = output
+    @result = nil
     @board = if block_rule_option
                BlockRuleBoard.new(board_side_length)
              else
@@ -26,15 +27,21 @@ class Game
     input.to_i
   end
 
-  def play
-    @output.show(@board)
+  def game_loop
     turns = [[:x, @player1], [:o, @player2]].cycle.take(@board.size)
-    turns.find( lambda{[ "Tie Game!"]} ) do |mark, player|
+    @result = turns.find( lambda{[ "Tie Game!"]} ) do |mark, player|
       move = get_move(player)
       new_board = @board.place(mark, move)
       @output.show(new_board)
       new_board.winner?
     end.first
+  end
+
+  def play
+    @output.show(@board)
+    result = game_loop
+    @output.result(result)
+    result
   end
 
 end

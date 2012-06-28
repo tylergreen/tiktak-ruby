@@ -30,8 +30,8 @@ module TikTak
     player2 = TCP_Player.new(:o)
     block_win = false
     game = Game.new(game_size, player1, player2, block_win, TCP_Display.new)
+    game.play
     puts "starting gui game"
-    result = game.play
     puts "thanks for playing!"
   end
 
@@ -43,10 +43,7 @@ module TikTak
     game_size = std.prompt("select game size:\n" + Board_sizes.to_s){ |input| Board_sizes.select(input) }.first
     block_win = std.prompt("select rules:\n" + Rules.to_s){ |input| Rules.select(input)}.first
     game = Game.new(game_size, player1, player2, block_win, CL_Display.new)
-    result = game.play
-    game.board.print
-    puts result
-    puts "Thanks for playing!"
-  end
+    game.play 
+ end
 end
 
