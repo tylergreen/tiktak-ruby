@@ -27,10 +27,12 @@ class Game
   end
 
   def play
+    @output.show(@board)
     turns = [[:x, @player1], [:o, @player2]].cycle.take(@board.size)
     turns.find( lambda{[ "Tie Game!"]} ) do |mark, player|
-      @output.show(@board)
-      new_board = @board.place(mark, get_move(player))
+      move = get_move(player)
+      new_board = @board.place(mark, move)
+      @output.show(new_board)
       new_board.winner?
     end.first
   end

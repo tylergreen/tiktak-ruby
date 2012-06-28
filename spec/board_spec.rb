@@ -142,11 +142,8 @@ describe Board do
   end
 
    it "can format itself to look prettier" do
-    assert_equal([["_"].cycle(@empty_board.length).to_a].cycle(@empty_board.length).to_a, @empty_board.format)
+    assert_equal([''].cycle(@empty_board.size), @empty_board.format)
   end
-
-  
-
 
 end
 

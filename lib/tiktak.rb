@@ -1,9 +1,11 @@
 require 'tiktak/game'
 require 'tiktak/option'
 require 'tiktak/prompt'
+require 'tiktak/frontends'
 require 'tiktak/players/human'
 require 'tiktak/players/random_ai'
 require 'tiktak/players/medium_ai'
+require 'tiktak/players/tcp_player'
 require 'tiktak/players/minimax/minimax_ai'
 
 module TikTak
@@ -21,6 +23,23 @@ module TikTak
   Rules = Option.new({ 'normal rules' => false,
                        'block rules (2x2 square of pieces counts as win)' => true    
                      })
+
+  def self.gui
+    game_size = 3
+#    player1 = TCP_Player.new(:x)
+#    player2 = TCP_Player.new(:o)
+    player1 = Human.new(:x)
+    player2 = Human.new(:o)
+    # move = player1.get_move(1)
+    # puts "move #{move}"
+    # move = player2.get_move(1)
+    # puts "move 2 #{move}"
+    block_win = false
+    game = Game.new(game_size, player1, player2, block_win, TCP_Display.new)
+    puts "starting gui game"
+    result = game.play
+    puts "thanks for playing!"
+  end
   
 
   def self.main

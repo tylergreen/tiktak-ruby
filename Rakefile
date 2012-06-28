@@ -14,6 +14,8 @@ task :play do
   TikTak.main
 end
 
-
+task :gui do
+  TikTak.gui 
+end
 	 
 

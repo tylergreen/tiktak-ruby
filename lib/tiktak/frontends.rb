@@ -1,3 +1,6 @@
+require 'json'
+require 'socket'
+
 class CL_Display
   def show(board)
     board.print
@@ -6,12 +9,12 @@ class CL_Display
 end
 
 class TCP_Display
-  def initialize
-      @conn = TCPSocket.new 'localhost', 9004
-  end
 
   def show(board)
-    @conn.puts "update_board #{board.to_a}\n"
+    conn = TCPSocket.new 'localhost', 9010
+    conn.puts ({'command' => "show_new_board",
+                  'board' => board.format}.to_json )
+    #confirm = @conn.gets
   end
     
 end

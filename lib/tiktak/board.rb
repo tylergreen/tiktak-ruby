@@ -72,14 +72,11 @@ class Board
   end
 
   def format
-    rows.map do |r|
-       r.map { |position| position == :empty ? '_' : position }
-    end
+    to_a.map { |position| position == :empty ? '' : position }
   end
 
   def print
     format.each{ |row| puts row.inspect }
   end
-
 
 end
