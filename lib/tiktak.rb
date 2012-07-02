@@ -24,10 +24,27 @@ module TikTak
                        'block rules (2x2 square of pieces counts as win)' => true    
                      })
 
-  def self.gui
+  def self.select_player(player_code)
+    case player_code
+    when 'human'
+      TCP_Player.new(:x)
+    when 'weak'
+      RandomAI.new(:x)
+    when 'medium'
+      MediumAI.new(:o)
+    when 'hard'
+      MinimaxAI.new(:o)
+    else
+      raise "unknown Player type: #{player_code}"
+    end
+  end
+
+  def self.gui(player1_code, player2_code)
     game_size = 3
-    player1 = TCP_Player.new(:x)
-    player2 = TCP_Player.new(:o)
+
+    player1 = select_player(player1_code)
+    player2 = select_player(player2_code)
+    
     block_win = false
     game = Game.new(game_size, player1, player2, block_win, TCP_Display.new)
     game.play

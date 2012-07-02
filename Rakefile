@@ -14,8 +14,12 @@ task :play do
   TikTak.main
 end
 
-task :gui do
-  TikTak.gui 
+task :gui, :arg1, :arg2 do |t, args|
+  TikTak.gui(args[:arg1], args[:arg2])
 end
-	 
+
+task :barf, :arg1, :arg2 do |t, args|
+  puts "hi"
+end
+
 
