@@ -5,7 +5,7 @@ class MinimaxAI < Player
 
   SearchDepth = 3
   def get_move(board)
-    if board.size < 4
+     if board.length < 4
       Minimax.minimax(@marker, board)
     else
       Minimax.minimax(@marker, board, true, SearchDepth)
