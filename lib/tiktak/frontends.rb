@@ -17,7 +17,7 @@ class TCP_Display
   def show(board)
     conn = TCPSocket.new 'localhost', 9010
     conn.puts({'command' => "show_new_board",
-                'board' => board.format}.to_json )
+                'board' => board.format('')}.to_json )
   end
 
   def result(result)
@@ -34,4 +34,5 @@ class NoDisplay
 
   def result(result)
   end
+
 end

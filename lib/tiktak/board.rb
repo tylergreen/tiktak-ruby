@@ -76,7 +76,7 @@ class Board
   end
 
   def to_s
-    format('_').each_slice(3).map{|row| row.join(' ') }.join("\n")
+    format('_').each_slice(@length).map{|row| row.join(' ') }.join("\n")
   end
 
 end
