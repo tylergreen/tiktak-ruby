@@ -11,9 +11,9 @@ require 'tiktak/players/minimax/minimax_ai'
 module TikTak
 
   Players = Option.new({ 'human' => Human,
-                          'weak' => RandomAI,
+                         'weak' => RandomAI,
                          'barely smart' => MediumAI,
-                          'unbeateable' => MinimaxAI
+                         'unbeateable' => MinimaxAI
                         })
 
   Board_sizes = Option.new({ '3x3' => 3,
