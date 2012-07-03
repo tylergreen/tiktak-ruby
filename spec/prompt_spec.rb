@@ -20,7 +20,7 @@ describe Prompt do
 
   it "keeps asking" do
     assert_equal("anything monkey\n",  @p1.prompt("press anykey"){ |resp| "anything " + resp })
-    assert_equal(true,  @p1.prompt("no monkeys"){ |resp| not( resp == "monkey" )})
+    assert_equal(true,  @p1.prompt("no monkeys"){ |resp| !( resp == "monkey" )})
   end
 
 end

@@ -1,3 +1,4 @@
+require 'backports'
 require 'tiktak/players/player'
 
 class RandomAI < Player

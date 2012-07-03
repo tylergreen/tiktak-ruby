@@ -1,3 +1,5 @@
+require 'rubygems'
+gem 'minitest'
 require 'minitest/spec'
 require 'minitest/autorun'
 require 'tiktak/board'
@@ -36,7 +38,7 @@ describe Board do
     
     it "knows its available positions" do
       assert_equal((0...@empty_board.size).to_a, @empty_board.available_moves)
-      assert(not(@empty_board.available_moves.include?(9) ))
+      assert(!(@empty_board.available_moves.include?(9) ))
       assert_equal(@empty_board.size, @empty_board.available_moves.length)
       assert_equal((0..7).to_a, @empty_board.place(:x, 8).available_moves)
       assert_equal((1..7).to_a, @empty_board.place(:x,0).place(:o,8).available_moves)
@@ -46,16 +48,16 @@ describe Board do
 
 
     it "knows if a move is legal" do
-      assert( not(@empty_board.legal_move?(-1)), "allowed negative number as move")
-      assert( not(@empty_board.legal_move?(@empty_board.size)), "off by one")
+      assert( !(@empty_board.legal_move?(-1)), "allowed negative number as move")
+      assert( !(@empty_board.legal_move?(@empty_board.size)), "off by one")
       (0...@empty_board.size).each do |pos|
         assert(@empty_board.legal_move?(pos), "failed for #{pos}")        
       end
-      assert not(@empty_board.place(:x,0).legal_move?(0))
+      assert !(@empty_board.place(:x,0).legal_move?(0))
     end
 
     it "can have pieces placed on it" do 
-      assert not(@empty_board.place(:x,0).legal_move?(0))
+      assert !(@empty_board.place(:x,0).legal_move?(0))
       assert([:x, :o, :empty], @empty_board.place(:x,0).place(:o,3).rows.first )
     end
 
@@ -67,7 +69,7 @@ describe Board do
       clone2 = @empty_board.clone_and_place(:x, 0)
       @empty_board.place(:x, 0)
       assert_equal(@empty_board.to_a, clone2.to_a)
-      assert(not( @empty_board == clone2))
+      assert(!( @empty_board == clone2))
     end
 
     it "provides access to rows" do
@@ -115,7 +117,7 @@ describe Board do
   end
 
   it "can detect a winner" do
-    assert( not(@empty_board.winner?), "false positive")
+    assert( !(@empty_board.winner?), "false positive")
     assert_equal(:x, @empty_board.place(:x,0).place(:x,1).place(:x,2).winner?, "failed to detect row win")
     assert_equal(:o, @empty_board.place(:o,2).place(:o,4).place(:o,6).winner?, "failed to detect diagonal win")
     assert_equal(:o, @empty_board.place(:o,0).place(:o,4).place(:o,8).winner?, "failed to detect diagonal win")
@@ -127,9 +129,8 @@ describe Board do
   end
 
   it "knows when the game is in a terminal position" do
-    assert(not(Board.new(3).terminal?))
-    assert(not(Board.new(3).place(:x, 4).terminal?))
-    assert(Board.new(3, ))
+    assert(!(Board.new(3).terminal?))
+    assert(!(Board.new(3).place(:x, 4).terminal?))
 
     g = Game.new(3, RandomAI.new, RandomAI.new)
     g.play

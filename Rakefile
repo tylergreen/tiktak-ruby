@@ -5,6 +5,9 @@ require "bundler/gem_tasks"
 require 'rake'
 require 'rake/testtask'
 require 'tiktak'
+require 'rubygems'
+gem 'minitest'
+require 'minitest/spec'
 
 Rake::TestTask.new do |t|
   t.pattern = 'spec/*_spec.rb'

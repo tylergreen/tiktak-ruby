@@ -23,7 +23,7 @@ describe Game do
         assert(@game.valid_input?(input), "failed to validate good input: #{input}")
       end
       [":45", "[3m", " ", "monkey", "", "&sfd", "\n" ].each do |input|
-        assert(not(@game.valid_input?(input)), "validated bad input: #{input}")
+        assert(!(@game.valid_input?(input)), "validated bad input: #{input}")
       end
     end
 

@@ -1,3 +1,5 @@
+require 'backports'
+
 class MediumAI < Player
 
   def get_move(board)
