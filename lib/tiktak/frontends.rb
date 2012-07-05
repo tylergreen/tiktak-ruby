@@ -4,6 +4,7 @@ require 'socket'
 class CL_Display
   def show(board)
     puts board.to_s
+    puts ''
   end
 
   def result(result)

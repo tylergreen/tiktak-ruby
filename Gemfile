@@ -5,4 +5,5 @@ gemspec
 
 gem 'backports'
 gem 'minitest'
+gem 'json'
 
