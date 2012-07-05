@@ -55,12 +55,12 @@ module TikTak
   def self.main
     puts "Welcome to Tyler's Tik Tak To Game!"
     std = Prompt.new(STDIN, STDOUT)
-    player1 = std.prompt("select first player:\n" + Players.to_s){ |input| Players.select(input) }.first.new(:x)
-    player2 = std.prompt("select second player:\n" + Players.to_s){ |input| Players.select(input) }.first.new(:o)
+    player1 = std.prompt("select first player:\n" + Players.to_s){ |input| Players.select(input) }.first
+    player2 = std.prompt("select second player:\n" + Players.to_s){ |input| Players.select(input) }.first
     game_size = std.prompt("select game size:\n" + Board_sizes.to_s){ |input| Board_sizes.select(input) }.first
     block_win = std.prompt("select rules:\n" + Rules.to_s){ |input| Rules.select(input)}.first
     game = Game.new(game_size, player1, player2, block_win, CL_Display.new)
-    game.play 
+    game.start
  end
 end
 

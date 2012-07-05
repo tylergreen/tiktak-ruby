@@ -8,7 +8,7 @@ require 'tiktak/players/random_ai'
 describe RandomAI do
   before do
     @random = RandomAI.new
-    @game = Game.new(3, nil, nil)
+    @game = Game.new(3, RandomAI, RandomAI)
   end
 
   describe "Random AI" do
@@ -17,9 +17,6 @@ describe RandomAI do
       assert((0..2).include?(@random.get_move(Board.new(3, [:empty, :empty, :empty, :x, :o, :x, :o, :x, :o]))))
     end
     
-    it "can play a game" do
-      assert(Game.new(3, RandomAI.new, RandomAI.new).play)
-    end
   end
 
 end

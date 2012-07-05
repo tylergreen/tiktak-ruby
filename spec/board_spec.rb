@@ -131,10 +131,7 @@ describe Board do
   it "knows when the game is in a terminal position" do
     assert(!(Board.new(3).terminal?))
     assert(!(Board.new(3).place(:x, 4).terminal?))
-
-    g = Game.new(3, RandomAI.new, RandomAI.new)
-    g.play
-    assert(g.board.terminal?)
+    assert(Board.new(3, (0...9).map{ [:x, :o].sample }))
   end
 
   it "can have a predefined layout" do

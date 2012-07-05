@@ -1,8 +1,9 @@
 require 'tiktak/players/player'
 
 class MockPlayer < Player
-  def initialize(move_stream)
-     @move_stream = move_stream
+  def initialize(marker, move_stream)
+    @marker = marker
+    @move_stream = move_stream
   end
 
   def get_move(board)
