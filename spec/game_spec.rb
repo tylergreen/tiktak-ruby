@@ -6,7 +6,7 @@ require 'tiktak/frontends'
 
 describe Game do
   before do
-    @game = Game.new(3, Player, Player)
+    @game = Game.new(3)
   end
 
   describe "Game Functionality" do
@@ -19,8 +19,7 @@ describe Game do
     
     it "validates player input" do 
       (0...@game.board.size).each do |position|
-        input = position.to_s
-        assert(@game.valid_input?(input), "failed to validate good input: #{input}")
+        assert(@game.valid_input?(position), "failed to validate good input: #{position}")
       end
       [":45", "[3m", " ", "monkey", "", "&sfd", "\n" ].each do |input|
         assert(!(@game.valid_input?(input)), "validated bad input: #{input}")
@@ -57,15 +56,11 @@ describe Game do
     end
 
     it "knows the current player" do
-      assert_equal(:x, @game.start.current_player.marker)
-      assert_equal(:o, @game.next_turn.current_player.marker)
+      assert_equal(:x, @game.start.current_player)
+      assert_equal(:o, @game.next_player)
+      assert_equal(:o, @game.current_player)
     end
 
-    it "can handle turn sequence" do
-      @game = Game.new(3, RandomAI, RandomAI)
-      @game.start
-      assert(@game.board.terminal?)
-    end
   end    
 end    
 

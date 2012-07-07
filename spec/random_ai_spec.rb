@@ -8,7 +8,7 @@ require 'tiktak/players/random_ai'
 describe RandomAI do
   before do
     @random = RandomAI.new
-    @game = Game.new(3, RandomAI, RandomAI)
+    @game = Game.new(3)
   end
 
   describe "Random AI" do
