@@ -15,4 +15,8 @@ class Human < Player
     input.to_i
   end
 
+  def ai?
+    false
+  end
+
 end
