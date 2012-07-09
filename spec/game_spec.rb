@@ -52,6 +52,7 @@ describe Game do
     it "can be told to make a move" do
       @game.start
       assert_equal(:ok, @game.make_move(:x, 0) )
+      assert(! @game.board.available?(0))
       assert_equal('bad move: 0', @game.make_move(:x, 0) )
     end
 
