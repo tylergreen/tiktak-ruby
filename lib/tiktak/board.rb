@@ -47,10 +47,8 @@ class Board
     self
   end
 
-  def clone_and_place(marker, position)
-    clone = Board.new(@length,@board.to_a)
-    clone.place(marker, position)
-    clone
+  def copy
+    Board.new(@length,@board.to_a)
   end
 
   def diagonals

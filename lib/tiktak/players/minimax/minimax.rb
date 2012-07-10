@@ -22,15 +22,15 @@ module Minimax
  end
 
  def self.move_value(player, move, board, limit=false, depth=3)
-   board = board.clone_and_place(player, move)
-   if board.terminal? 
-     value(board, player)
+   new_board = board.copy.place(player, move)
+   if new_board.terminal? 
+     value(new_board, player)
    elsif limit and depth == 0
      0 # unknown
    else 
      ok_move, losing_move = false
-     board.available_moves.find do |move|
-       case move_value(switch(player), move, board, limit, depth - 1)
+     new_board.available_moves.find do |move|
+       case move_value(switch(player), move, new_board, limit, depth - 1)
        when 1 
          losing_move = true
          true

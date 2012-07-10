@@ -61,12 +61,14 @@ describe Board do
       assert([:x, :o, :empty], @empty_board.place(:x,0).place(:o,3).rows.first )
     end
 
-    it "can clone itself and place a piece on the clone" do
-      clone = @empty_board.clone_and_place(:x, 0)
+    it "can copy itself and place a piece on the copy" do
+      copy = @empty_board.copy
+      copy.place(:x, 0)
       assert_equal([:empty, :empty, :empty], @empty_board.rows.first)
-      assert_equal([:x, :empty,:empty], clone.rows.first)
+      assert_equal([:x, :empty,:empty], copy.rows.first)
 
-      clone2 = @empty_board.clone_and_place(:x, 0)
+      clone2 = @empty_board.copy
+      clone2.place(:x, 0)
       @empty_board.place(:x, 0)
       assert_equal(@empty_board.to_a, clone2.to_a)
       assert(!( @empty_board == clone2))
