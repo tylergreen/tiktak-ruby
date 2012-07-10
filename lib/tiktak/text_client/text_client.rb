@@ -50,9 +50,8 @@ class TextClient
   end
 
   def game_loop
-    turns = [[:x, @player1], [:o, @player2]].cycle.take(@game.board.size)
     show(@game.board)
-    @result = turns.find( lambda{[ "Tie Game!"]} ) do |mark, player|
+    @result = @game.turns(@player1, @player2).find( lambda{[ "Tie Game!"]} ) do |mark, player|
       move = player.get_move(@game.board)
       while not @game.board.legal_move?(move)
         @stdout.puts "illegal move: #{ move }"

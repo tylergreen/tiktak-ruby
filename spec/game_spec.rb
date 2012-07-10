@@ -62,6 +62,10 @@ describe Game do
       assert_equal(:o, @game.current_player)
     end
 
+    it "has an alterating turn sequence" do
+      assert_equal(@game.board.size, @game.turns(nil, nil).length)
+      assert_equal([[:x, 'p1'], [:o, 'p2'], [:x, 'p1'], [:o, 'p2']], @game.turns("p1", "p2").take(4))
+    end
   end    
 end    
 
